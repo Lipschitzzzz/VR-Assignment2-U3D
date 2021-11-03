@@ -1,0 +1,13 @@
+I followed this tutorial
+https://www.youtube.com/watch?v=HFNzVMi5MSQ
+
+Create a cube as the Manager, a cylinder as the base, an empty object as clicker manager and a cylinder as a clicker.
+
+Hierarchy like this
+
+PhysicsUI
+    Base
+    Push
+        Clicker
+
+Implement press and release function in PhysicsUI script which is at Asset/Resources/Scripts/PhysicsUI
