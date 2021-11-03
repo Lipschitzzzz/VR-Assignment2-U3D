@@ -19,4 +19,7 @@ left trigger button releasing when collided with stick -> stick stop lookat
 right trigger button pressing when collided with stick -> stick sliding to its forward direction
 right trigger button releasing when collided with stick -> stick stop sliding
 
-
+![image](Screenshots/demo1.gif)
+![image](Screenshots/demo2.gif)
+![image](Screenshots/screenshots1.jpg)
+![image](Screenshots/screenshots1.jpg)
