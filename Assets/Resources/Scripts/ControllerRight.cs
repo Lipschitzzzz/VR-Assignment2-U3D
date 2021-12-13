@@ -146,7 +146,27 @@ public class ControllerRight : MonoBehaviour
         {
             CanBeGrabbed();
         }
+        if (other.transform.name == "Button")
+        {
+            if (other.transform.localEulerAngles.x >= 355.0f)
+            {
+                other.transform.localEulerAngles = new Vector3(5.0f, 0.0f, 0.0f);
+                AudioSource audioData = other.GetComponent<AudioSource>();
+                audioData.Play(0);
+            }
+            else
+            {
+                other.transform.localEulerAngles = new Vector3(-5.0f, 0.0f, 0.0f);
+                Debug.Log(other.transform.localEulerAngles.x);
+                AudioSource audioData = other.GetComponent<AudioSource>();
+                audioData.Play(0);
+            }
+        }
+
+
         
+
+
     }
 
     // Anyway when rightcontroller exit, the stick must be released
@@ -174,6 +194,27 @@ public class ControllerRight : MonoBehaviour
             }
             GrabSlideRelease();
         }
+
+        if (other.transform.name == "Slider")
+        {
+            Debug.Log("Slider");
+            UnityEngine.XR.InputDevices.GetDevicesWithRole(UnityEngine.XR.InputDeviceRole.RightHanded, rightHandDevices);
+            float triggerValue;
+            foreach (var device in rightHandDevices)
+            {
+
+                // 0.0216 - 0.2004
+                if (device.TryGetFeatureValue(UnityEngine.XR.CommonUsages.trigger, out triggerValue) && triggerValue > 0.7f)
+                {
+                    if (this.transform.position.x >= 0.0216 && this.transform.position.x <= 0.2004)
+                    {
+                        other.transform.position = new Vector3(this.transform.position.x, 0.4416f, -0.5481f);
+                    }
+                }
+            }
+        }
+
+
     }
 
     // Start is called before the first frame update

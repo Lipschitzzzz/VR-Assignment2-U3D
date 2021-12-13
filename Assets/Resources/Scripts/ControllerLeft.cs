@@ -151,6 +151,17 @@ void Awake()
         {
             CanBeGrabbed();
         }
+        if (other.transform.name == "Button")
+        {
+            if (other.transform.rotation.x == 5.0f)
+            {
+                other.transform.rotation = Quaternion.Euler(-5.0f, 0.0f, 0.0f);
+            }
+            else
+            {
+                other.transform.rotation = Quaternion.Euler(5.0f, 0.0f, 0.0f);
+            }
+        }
     }
 
     // Anyway when leftcontroller exit, the stick must be released
@@ -178,6 +189,26 @@ void Awake()
             GrabAdjustRelease();
         }
 
+        if (other.transform.name == "Slider")
+        {
+            
+            UnityEngine.XR.InputDevices.GetDevicesWithRole(UnityEngine.XR.InputDeviceRole.LeftHanded, leftHandDevices);
+            float triggerValue;
+            foreach (var device in leftHandDevices)
+            {
+
+                // 0.0216 - 0.2004
+                if (device.TryGetFeatureValue(UnityEngine.XR.CommonUsages.trigger, out triggerValue) && triggerValue > 0.7f)
+                {
+                    Debug.Log("Slider1");
+                    if (this.transform.position.x >= 0.0216 && this.transform.position.x <= 0.2004)
+                    {
+                        Debug.Log("Slider2");
+                        other.transform.position = new Vector3(this.transform.position.x, 0.4416f, -0.5481f);
+                    }
+                }
+            }
+        }
 
     }
 
